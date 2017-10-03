@@ -1,0 +1,283 @@
+body, header, footer {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Avoid the IE 10-11 `min-height` bug. */
+}
+
+.page-container {
+  flex: 1 0 auto;
+  max-width: 1400px;
+  padding: 100px 0px 20px 0px;
+  margin: auto;
+}
+
+
+header, footer, .page-container, #run, #form1, #goHere, #outputTable  {
+  width: 100%;
+}
+
+header {
+  color: black;
+  background: #fff;
+  border-bottom: 5px solid #314566;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  z-index: 9999;
+  top: 0;
+  position: fixed;
+  padding: 0px 0px 10px;
+}
+
+.shrink {
+  padding: 1px 0px 1px;
+  font-size: 70%;
+  font-weight: bold;
+}
+
+p#intro {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 100%;
+  line-height: 90%;
+  margin-top: -20px;
+}
+
+
+.footer {
+  flex-shrink: 0;
+  padding: 7px;
+}
+
+
+footer {
+   background: #314566;
+   color: white;
+   text-align: center;
+   margin-top: 5px;
+   font-size: 80%;
+}
+
+footer p:last-child {
+  margin-top: -10px
+}
+
+.one-third, .two-thirds {
+  border: 3px solid #7c7e82;
+  padding: .5%;
+}
+
+.one-third {
+  width: 31%;
+  float: left;
+}
+
+.two-thirds {
+  width: 65%;
+  float: right; /*changed from left*/
+}
+
+input, select, label {
+vertical-align: text-top;
+padding-bottom: 1%;
+padding-top: 1%;
+margin-top: 1%;
+margin-bottom: 1%;
+}
+
+input, select {
+  border: 2px solid #dadada;
+  border-radius: 7px;
+  float: right;
+  width: 42%;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+/*select, option {
+   -webkit-appearance : none;
+   -moz-appearance : none;
+   background : none;
+}*/
+
+
+label {
+    color: black;
+    float: left;
+    width: 58%;
+    text-align: left;
+    }
+
+#run {
+  width : 100%;
+  border: 3px solid #7c7e82;
+  border-radius: 7px;
+  display: inline-block;
+  float: left;
+  text-align: center;
+  font-size: 110%;
+  background-color: #f2f2f2;
+}
+#run:hover, #run:focus {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  background-color: #314566;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  }
+
+
+table td {
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+
+table td, table th  {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  }
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+thead {
+  background-color: #343638;
+  color: white;
+}
+
+table td:first-child {
+    text-align: left;
+}​
+
+
+
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+    overflow-x: auto;
+}
+
+table {
+  border: 1px solid black;
+}
+
+.three-item-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  height: 200px;
+}
+
+.wrapper-child  {
+  margin: auto;
+  flex: 0 1 auto;
+  align-self: flex-start;
+  vertical-align: top;
+  height: 100%;
+}
+
+.topnav {
+    background-color: #343638;
+    overflow: hidden;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 90%;
+}
+
+.topnav a:hover {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+/*this is not working*/
+.topnav a.active {
+    background-color: #314566;
+    color: white;
+}
+
+p, li {
+  line-height: 1.4;
+}
+
+.border {
+  border-top: 3px solid #7c7e82;
+}
+
+.three-item-wrapper2nd {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+
+.column {
+  margin: 20px 5px;
+  width: 30%;
+  padding: 1% 1%;
+  float: left;
+  border-left: 3px solid #7c7e82;
+  height: 640px;
+}
+
+#longerterm {
+  border-right: 3px solid #7c7e82;
+}
+
+.column h3 {
+  text-align: center;
+}

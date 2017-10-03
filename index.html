@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Return Check</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+ </head>
+<body>
+  <div class="row-padding"> </div>
+  <header>
+  <h1 class="title" id="pageTitle">Return Check</h1>
+  <p id="intro">An efficient way to check financial analysis</p>
+  </header>
+
+<div class="page" id="Analysis">
+<div class="page-container">
+
+  <div class="topnav" id="topnavAnalysis">
+  <a class="Analysisselect select" href="#analysis">Analysis</a>
+  <a class="Aboutselect select" href="#about">About</a>
+  <a class="Improvementsselect select" href="#improvements">Improvements</a>
+  </div>
+
+ <div class="one-third clearfix">
+ <form id="form1" name="inputsForm" action="" method="GET">
+    <h3 class="title" id="inputs">Analysis Inputs</h3>
+    <label for="holdPeriod"> Time Period for Investment </label>
+    <input type="number" name="holdPeriod" id="holdPeriod" placeholder="In Years" min="1" max="30" required><br>
+
+    <label for="purchasePrice"> Total Purchase Price </label>
+    <input type="number" name="purchasePrice" id="purchasePrice" placeholder="In Dollars" min="0" required><br>
+
+    <label for="purchaseCosts"> Total Transaction Costs </label>
+    <input type="number" name="purchaseCosts" id="purchaseCosts" placeholder="In Dollars" min="0"><br>
+
+    <label for="salePrice"> Total Sale Price </label>
+    <input type="number" name="salePrice" id="salePrice" placeholder="In Dollars" required><br>
+
+    <label for="saleCosts"> Estimated Sale Costs as % of Price </label>
+    <input type="number" name="saleCosts" id="saleCosts" placeholder="In Decimals: ie.0.02 for 2%" step=0.0001 min="0" max="100"><br>
+
+    <label for="initialEBITDA"> Initial EBITDA </label>
+    <input type="number" name="initialEBITDA" id="initialEBITDA" placeholder="In Dollars" required><br>
+
+    <label for="timingTypeEntry"> Initial EBITDA Timing </label>
+    <select name="timingTypeEntry" id="timingTypeEntry">
+      <option name="forward" id="forward">Forward</option>
+      <option name="current" id="current">Current</option>
+    </select><br>
+
+    <label for="initialCapitalOther"> Year 1 Capital / Other Costs </label>
+    <input type="number" name="initialCapitalOther" id="initialCapitalOther" placeholder= "Use Negative Sign if Outflow"><br>
+
+    <label for="annualGrowthRate"> Annual Growth Rate for EBITDA </label>
+    <input type="number" name="annualGrowthRate" id="annualGrowthRate" placeholder="In Decimals: ie.0.02 for 2%" step=0.0001 min="-100" max="100"><br>
+
+    <label for="annualCapitalOtherCostChange"> Annual Change in Capital / Other Costs </label>
+    <input type="number" name="annualCapitalOtherCostChange" id="annualCapitalOtherCostChange" placeholder="In Decimals: ie.0.02 for 2%" step=0.0001 min="-100" max="100"><br>
+
+    <label for="financingAmount"> Total Debt Placed and Assumed </label>
+    <input type="number" name="financingAmount" id="financingAmount" placeholder="In Dollars"><br>
+
+    <label for="financingType"> Financing Type </label>
+    <select name="financingType" id="financingType">
+      <option name="io" id="io">Interest Only</option>
+      <option name="amort" id="amort">Amortizing</option>
+    </select><br>
+
+    <label for="interestRate"> Blended Interest Rate </label>
+    <input type="number" name="interestRate" id="interestRate" placeholder="In Decimals: ie.0.02 for 2%" step=0.0001 min="0" max="100"><br>
+
+    <label for="presentationDecimals"> Number of Decimal Places to Present </label>
+    <input type="number" name="presentationDecimals" id="presentationDecimals" step=1 min="0" max="100"><br>
+
+    <label for="IRRTypeEntry"> IRR or XIRR </label>
+    <select name="IRRTypeEntry" id="IRRTypeEntry">
+      <option name="IRR" id="IRR">IRR</option>
+      <option name="XIRR" id="XIRR">XIRR</option>
+    </select><br>
+
+    <input name="run" id="run" value="Submit" onClick="getResults(this.form)"><br>
+    </form>
+</div>
+
+<div class="two-thirds clearfix">
+<div id="allOutput">
+  <h3 class="title" id="outputTitle"> Returns Output </h3>
+  <div id="goHere" class="clearfix">
+  <table id="outputTable">
+    <thead id="outputTableHeader">
+      <tr>
+        <th></th>
+        <th>Entry</th>
+        <th>Year 1</th>
+        <th>Year 2</th>
+        <th>Year 3</th>
+        <th>Year 4</th>
+        <th>Year 5</th>
+        <th>Exit</th>
+      </tr>
+    </thead>
+    <tbody id="outputTableBody">
+      <tr>
+        <td>Cash Flows</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <tr>
+        <td>Total Unleveraged Cash Flows</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td> Unleveraged IRR </td>
+        <td></td>
+        <td colspan="5">Detail shown upon submission</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Total Leveraged Cash Flows</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td> Leveraged IRR </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <h3 class="title" id="additionalMetricsTitle"> Additional Metrics </h3>
+   <div class="three-item-wrapper">
+<div id="goHere2" class="wrapper-child">
+<table id="sourcesAndUsesTable" class="table-child">
+  <thead id="sourcesAndUsesTableHeader">
+    <tr>
+      <th colspan="2"> Sources And Uses </th>
+    </tr>
+  </thead>
+  <tbody id="sourcesAndUsesTableBody">
+    <tr>
+      <td>Purchase Price</td>
+    </tr>
+    <tr>
+      <td>Transaction Costs</td>
+    </tr>
+    <tr>
+      <td>Total Uses</td>
+    </tr>
+    <tr>
+       <td></td>
+    </tr>
+    <tr>
+      <td>Debt Financing</td>
+    </tr>
+    <tr>
+      <td>Equity</td>
+   </tr>
+    <tr>
+      <td>Total Sources</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div id="goHere3" class="wrapper-child">
+<table id="multiplesSummaryTable" class="table-child">
+  <thead id="multiplesSummaryTableHeader">
+    <tr>
+      <th colspan="5">Entry and Exit Multiples</th>
+    </tr>
+  </thead>
+  <tbody id="multiplesSummaryTableBody">
+    <tr>
+      <th></th>
+      <th>Entry</th>
+      <th>Exit</th>
+    </tr>
+    <tr>
+      <td>Current</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Forward</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div id="goHere4" class="wrapper-child">
+<table id="CAGRSummaryTable" class="table-child">
+  <thead id="CAGRSummaryTableHeader">
+    <tr>
+      <th colspan="2">CAGRs</th>
+    </tr>
+  </thead>
+  <tbody id="CAGRSummaryTableBody">
+    <tr>
+    <td>EBITDA</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Unleveraged Cash Flow  </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Leveraged Cash Flow  </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="row-padding"></div>
+<div class="push"></div>
+</div>
+</div>
+
+<div class="page" id="About" style="display:none">
+  <div class="page-container">
+
+    <div class="topnav" id="topnavAbout">
+    <a class="Analysisselect select" href="#analysis">Analysis</a>
+    <a class="Aboutselect select" href="#about">About</a>
+    <a class="Improvementsselect select" href="#improvements">Improvements</a>
+    </div>
+
+
+<h2 class="title">Background and Assumptions</h2>
+  <div class="border"></div>
+  <h3>Purpose</h3>
+   <p>To enhance confidence / validation of returns analysis</p>
+   <div class="border"></div>
+  <h3>Background</h3>
+   <p> Often in financial analysis, we end up building complex models with substantial and thoughtful details, breaking down the components of multiple lines of business in order to build them back up again to ultimately see the total picture and make the best decision possible with the information available.  After all of that complexity, I wanted to create a way for financial analysts / associates to efficiently check the ultimate outputs prior to their use</p>
+  <div class="border"></div>
+  <h3>Notes on the Model</h3>
+   <ul>
+     <li>Annual cash flows only</li>
+        <ul>
+          <li>No partial years</li>
+          <li>No quarterly or monthly inputs</li>
+          <li>Time period of up to 30 years</li>
+        </ul>
+    <li>Major line item totals</li>
+        <ul>
+          <li>EBITDA and Capital / Other Costs</li>
+          <li>One growth input for each (can be positive or negative)</li>
+          <li>Use subtotals / average rates as proxy for models with multiple EBITDA and / or other income or expense streams</li>
+        </ul>
+    <li>Can set EBITDA to:</li>
+        <ul>
+          <li>Current: Amount not reflected in cash flows, year one is based on current * annual growth</li>
+          <li>Forward: Sets input as the first year’s EBITDA</li>
+        </ul>
+    <li>Only one debt component input</li>
+       <ul>
+          <li>Take the blended average of terms to ballpark more complex debt structures</li>
+          <li>If no rate is specified and a debt amount is entered, 5% is the default</li>
+          <li>Debt is calculated on a monthly basis and then summarized for cash flow output</li>
+          <li>No refinancing or ability to place additional debt / repay early</li>
+      </ul>
+    <li>No early / partial sales of assets</li>
+    <li>Select IRR or XIRR</li>
+      <ul>
+        <li>IRR assumes final cash flow and terminal value occur on same date. Shown separately for presentation</li>
+        <li>XIRR assumes midyear convention for annual cash flows, entry at time zero and exit at the end of the final year</li>
+        <li>Will not calculate returns if inputs create significantly punitive or outrageously positive returns (ie. buying for $100 and selling for $10)</li>
+        <li>Returns are calculated on full numbers.  Rounding is for presentation
+      </ul>
+  </ul>
+  <div class="border"></div>
+  <h3>Briefly, My Credentials</h3>
+   <ul>
+     <li>10 years at Wachovia / Wells Fargo / Eastdil Secured, most recently as VP of mergers and acquisitions in real estate</li>
+        <ul>
+          <li>Platform ranked as the #1 REIT strategic advisor since 2014</li>
+        </ul>
+    <li>Started in real estate coverage, going on to concentrate on real estate strategic advisory</li>
+    <li>Post-recession, had 11 closed REIT mergers totaling ~$30 billion</li>
+    <li>Have underwritten and advised on over $100 billion of real estate</li>
+    <li>Graduated from UVA in 2007, triple major in finance, marketing, foreign affairs</li>
+  </ul>
+  <div class="border"></div>
+  <div class="row-padding"></div>
+  <div class="push"></div>
+</div>
+</div>
+
+<div class="page" id="Improvements" style="display:none">
+  <div class="page-container">
+
+    <div class="topnav" id="topnavImprovement">
+    <a class="Analysisselect select" href="#analysis">Analysis</a>
+    <a class="Aboutselect select" href="#about">About</a>
+    <a class="Improvementsselect select" href="#improvements">Improvements</a>
+    </div>
+
+  <h2 class="title">Additional Future Functionality</h2>
+  <div class="border"></div>
+  <h3>Enhancements</h3>
+  <p>This is the first iteration of financial analysis that will be continue to be refined and improved upon</p>
+  <div class="border"></div>
+  <div class="three-item-wrapper2nd">
+  <div class="verticalLine"></div>
+  <div class="column" id="basic">
+  <h3>Basic</h3>
+    <ul>
+       <li>Sensitivity tables</li>
+       <li>Ability to set entry and exit based on multiple or set amount</li>
+       <li>Multiple pieces of debt with different terms</li>
+       <li>Mezz debt and preferred equity</li>
+       <li>Ability to take multiple EBITDA streams and label them accordingly</li>
+       <li>Sources and uses to address current capital structure as well</li>
+       <li>Specific tax calculation</li>
+       <li>Specific line items for capEx and changes in working capital</li>
+    </ul>
+  </div>
+  <div class="verticalLine"></div>
+  <div class="column" id="intermediate">
+  <h3>Intermediate</h3>
+  <ul>
+     <li>Changing growth rates over time</li>
+     <li>Debt refinancing upon maturity with different assumptions than initial debt</li>
+     <li>Early asset sales and debt repayment</li>
+     <li>Ability to change names for line items</li>
+     <li>Ability to show additional revenue, expense, and overhead detail as desired</li>
+     <li>Mobile-friendly layout</li>
+  </ul>
+  </div>
+  <div class="verticalLine"></div>
+  <div class="column" id="longerterm">
+  <h3>Longer Term</h3>
+  <ul>
+  <li>Monthly, quarterly analysis, including annual roll ups and partial years</li>
+  <li>Specific input overrides</li>
+  <li>Additional models including:</li>
+        <ul>
+        <li>Joint venture with ability to model equity splits / promotes</li>
+        <li>Public company mergers: one and multi-year</li>
+        <li>Fairness Opinion metrics: dividend discount, multiples analysis, WACC, DCF, NAVs
+        <li>Real estate model based upon cap rates</li>
+        <li>Corporate models with ability to buy and sell assets, draw on line of credit, forecast balance sheet, capital raises, and credit compliance</li>
+      </ul>
+  <li>Export to excel</li>
+  <li>Chart outputs and basic company overview with capitalization, debt maturities, ability to summarize various revenue streams</li>
+  <li>Link to database / ability to take inputs from specific documents to populate inputs (ie. entering a company ticker would fill in all company-related details)</li>
+  <li>Make dynamic company / deal overviews with outputs in user-friendly format</li>
+  </ul>
+  <div class="verticalLine"></div>
+  </div>
+  </div>
+  <div class="border"></div>
+    <div class="row-padding"></div>
+    <div class="push"></div>
+</div>
+</div>
+
+<footer class="footer">
+  <p> Made by Lindsay Davis </p>
+  <p> Contact information: <a href:"mailto:lindsay.amanda.davis@gmail.com"> lindsay.amanda.davis@gmail.com</a></p>
+</footer>
+<script src="js/index.js"></script>
+
+</body>
+</html>
