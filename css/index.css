@@ -109,13 +109,6 @@ input:focus, select:focus {
     box-shadow: 0 0 10px #9ecaed;
 }
 
-/*select, option {
-   -webkit-appearance : none;
-   -moz-appearance : none;
-   background : none;
-}*/
-
-
 label {
     color: black;
     float: left;
@@ -172,9 +165,7 @@ thead {
 
 table td:first-child {
     text-align: left;
-}​
-
-
+}
 
 .clearfix:before, .clearfix:after {
     content: " ";
@@ -201,7 +192,7 @@ table {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row wrap;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-around;
   -webkit-align-items: flex-start;
   align-items: flex-start;
@@ -259,19 +250,18 @@ p, li {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row wrap;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-around;
-  -webkit-align-items: flex-start;
-  align-items: flex-start;
+  -webkit-align-items: stretch;
+  align-items: stretch;
 }
 
 .column {
   margin: 20px 5px;
   width: 30%;
   padding: 1% 1%;
-  float: left;
   border-left: 3px solid #7c7e82;
-  height: 640px;
+  height: auto;
 }
 
 #longerterm {
